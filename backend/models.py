@@ -19,8 +19,8 @@ class RestaurantPizza(db.Model):
 
     @validates('price')
     def validate_price(self, key, price):
-        if len(price) < 30:
-            raise ValueError("Description must have more than 30 characters")
+        if not (1.0 <= price <= 30.0):
+            raise ValueError("Price must be between 1 and 30")
         return price
 
 class Restaurant(db.Model, SerializerMixin):
