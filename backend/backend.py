@@ -4,7 +4,7 @@ from flask_migrate import Migrate
 from flask_restful import Api, Resource
 from http import HTTPStatus
 
-from models import db, Restaurant, Pizza, RestaurantPizza
+from models import db
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///pizza.db'
@@ -33,17 +33,6 @@ class Home(Resource):
         return response
 
 api.add_resource(Home, '/')
-
-class Restaurants(Resource):
-    def get(self):
-
-        restaurant_list = [r.to_dict() for r in Restaurant.query.all()]
-
-        return make_response(
-            jsonify(restaurant_list),
-            HTTPStatus.OK,
-        )
-api.add_resource(Restaurants,'/restaurants')
 
 if __name__ == '__main__':
     app.run(port=5555,debug=True)
