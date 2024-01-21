@@ -41,5 +41,15 @@ class Restaurants(Resource):
     
 api.add_resource(Restaurants, '/restaurants')
 
+class RestaurantById(Resource):
+    def get(self,id):
+        restaurant_dict = Restaurant.query.filter_by(id=id).first()
+        if restaurant_dict:
+            return make_response(jsonify(restaurant_dict.to_dict()), HTTPStatus.OK)
+        else:
+            return make_response({"error":"Restaurant not found"}, HTTPStatus.NOT_FOUND)
+
+api.add_resource(RestaurantById, '/restaurants/<int:id>')
+
 if __name__ == '__main__':
     app.run(port=5555,debug=True)
