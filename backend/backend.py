@@ -60,5 +60,21 @@ class RestaurantById(Resource):
 
 api.add_resource(RestaurantById, '/restaurants/<int:id>')
 
+class Pizzas(Resource):
+    def get(self):
+        pizzas_dict = [p.to_dict() for p in Pizza.query.all()]
+        return make_response(jsonify(pizzas_dict), HTTPStatus.OK)
+
+api.add_resource(Pizzas, '/pizzas')
+
+class RestaurantPizzas(Resource):
+    def get(self):
+        restaurant_pizzas_dict = [rp.to_dict() for rp in RestaurantPizza.query.all()]
+        return make_response(jsonify(restaurant_pizzas_dict), HTTPStatus.OK)
+    
+    
+api.add_resource(RestaurantPizzas, '/restaurant_pizzas')
+
+
 if __name__ == '__main__':
     app.run(port=5555,debug=True)
