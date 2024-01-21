@@ -72,7 +72,18 @@ class RestaurantPizzas(Resource):
         restaurant_pizzas_dict = [rp.to_dict() for rp in RestaurantPizza.query.all()]
         return make_response(jsonify(restaurant_pizzas_dict), HTTPStatus.OK)
     
-    
+    def post(self):
+        data = request.get_json()
+        new_restaurant_pizza = RestaurantPizza(
+            restaurant_id = data['restaurant_id'],
+            pizza_id = data['pizza_id'],
+            price = data['price']
+        )
+        db.session.add(new_restaurant_pizza)
+        db.session.commit()
+        pizza = Pizza.query.filter_by(id=data['pizza_id']).first()
+        return make_response(pizza.to_dict(), HTTPStatus.CREATED)
+
 api.add_resource(RestaurantPizzas, '/restaurant_pizzas')
 
 
