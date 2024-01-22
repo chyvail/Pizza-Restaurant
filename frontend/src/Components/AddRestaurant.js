@@ -47,7 +47,7 @@ export default function AddRestaurant() {
           className="btn btn-light"
           onClick={handleButtonClick}
         >
-          Add New Restaurant
+          Add New Restaurant 
         </button>
       </div>
 
@@ -63,7 +63,7 @@ export default function AddRestaurant() {
           <div className="modal-content">
             <div className="modal-header">
               <h5 className="modal-title form-font" id="exampleModalLabel ">
-                Add A New Restaurant
+                Add A New Restaurant 🍜
               </h5>
               <button
                 type="button"
@@ -105,7 +105,7 @@ export default function AddRestaurant() {
                   >
                     Close
                   </button>
-                  <button type="submit" class="btn btn-primary btn-color">
+                  <button type="submit" className="btn btn-primary btn-color">
                     Submit Form
                   </button>
                 </div>
