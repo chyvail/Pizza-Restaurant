@@ -42,6 +42,16 @@ class Restaurants(Resource):
         restaurant_dict = [r.to_dict() for r in Restaurant.query.all()]
         return make_response(jsonify(restaurant_dict), HTTPStatus.OK)
     
+    def post(self):
+        data = request.get_json()
+        new_restaurant = Restaurant(
+            name = data['name'],
+            address = data['address']
+        )
+        db.session.add(new_restaurant)
+        db.session.commit()
+        return make_response(jsonify(new_restaurant.to_dict()), HTTPStatus.CREATED)
+    
 api.add_resource(Restaurants, '/restaurants')
 
 class RestaurantById(Resource):

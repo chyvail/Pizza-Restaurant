@@ -1,11 +1,42 @@
 import React from "react";
+import { useState } from "react";
 
 export default function AddRestaurant() {
+  const [formData, setFormData] = useState({
+    name: "",
+    address: "",
+  });
+
   const handleButtonClick = () => {
     const modal = new window.bootstrap.Modal(
       document.getElementById("myModal")
     );
     modal.show();
+  };
+
+  const handleOnChange = (e) => {
+    const key = e.target.id;
+    setFormData({ ...formData, [key]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    fetch("/restaurants", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    })
+      .then((res) => {
+        res.json();
+        alert("Data has been added");
+      })
+      .then((data) => console.log(data));
+    setFormData({
+      name: "",
+      address: "",
+    });
   };
 
   return (
@@ -42,7 +73,7 @@ export default function AddRestaurant() {
               ></button>
             </div>
             <div className="modal-body">
-              <form>
+              <form onSubmit={handleSubmit}>
                 <div className="mb-3">
                   <label className="col-form-label form-font">
                     Restaurant Name
@@ -50,7 +81,9 @@ export default function AddRestaurant() {
                   <input
                     type="text"
                     className="form-control"
-                    id="restaurant-name"
+                    id="name"
+                    onChange={handleOnChange}
+                    value={formData.name}
                   />
                 </div>
                 <div className="mb-3">
@@ -59,22 +92,24 @@ export default function AddRestaurant() {
                   </label>
                   <textarea
                     className="form-control"
-                    id="restaurant-address"
+                    id="address"
+                    onChange={handleOnChange}
+                    value={formData.address}
                   ></textarea>
                 </div>
+                <div className="modal-footer">
+                  <button
+                    type="button"
+                    className="btn btn-secondary"
+                    data-bs-dismiss="modal"
+                  >
+                    Close
+                  </button>
+                  <button type="submit" class="btn btn-primary btn-color">
+                    Submit Form
+                  </button>
+                </div>
               </form>
-            </div>
-            <div className="modal-footer">
-              <button
-                type="button"
-                className="btn btn-secondary"
-                data-bs-dismiss="modal"
-              >
-                Close
-              </button>
-              <button type="button" class="btn btn-primary">
-                Submit Form
-              </button>
             </div>
           </div>
         </div>
