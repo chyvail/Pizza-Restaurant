@@ -130,4 +130,4 @@ Creates a new RestaurantPizza associated with an existing Pizza and Restaurant:
 
 ```
 
-To access the routes and interact with the backend, use the appropriate HTTP verbs (GET, DELETE, POST) along with the specified endpoints. Ensure that the React frontend application is fully built to facilitate comprehensive testing of the API.
+To access the routes and interact with the backend, use the appropriate HTTP verbs (GET, DELETE, POST) along with the specified endpoints.
