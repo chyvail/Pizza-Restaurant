@@ -3,6 +3,7 @@ from flask import Flask, request, make_response, jsonify
 from flask_migrate import Migrate
 from flask_restful import Api, Resource
 from http import HTTPStatus
+from flask_cors import CORS
 
 from models import db, Restaurant, Pizza, RestaurantPizza
 
@@ -14,6 +15,8 @@ app.json.compact = False
 migrate = Migrate(app, db)
 
 db.init_app(app)
+
+CORS(app)
 
 api = Api(app)
 
