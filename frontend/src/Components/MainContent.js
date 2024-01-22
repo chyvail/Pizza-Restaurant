@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import AddRestaurant from "./AddRestaurant";
 
 export default function MainContent() {
   const [data, setData] = useState([]);
@@ -30,6 +31,7 @@ export default function MainContent() {
           </div>
         ))}
       </div>
+      <AddRestaurant />
     </div>
   );
 }

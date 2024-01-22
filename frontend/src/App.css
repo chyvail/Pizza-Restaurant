@@ -70,3 +70,7 @@ h1 {
 .svg-icon {
   margin-right: 10px;
 }
+
+.form-font {
+  color: var(--color-bg);
+}
