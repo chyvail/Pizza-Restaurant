@@ -5,7 +5,7 @@ export default function MainContent() {
   const [data, setData] = useState([]);
 
   const handleDelete = (id) => {
-    fetch(`/restaurants/${id}`, {
+    fetch(`https://pizza-restaurant-jl0u.onrender.com/restaurants/${id}`, {
       method: 'DELETE',
     })
       .then(response => {
@@ -23,7 +23,7 @@ export default function MainContent() {
   };  
 
   useEffect(() => {
-    fetch("/restaurants")
+    fetch("https://pizza-restaurant-jl0u.onrender.com/restaurants")
       .then((response) => response.json())
       .then((resdata) => setData(resdata));
   }, []);
@@ -45,13 +45,12 @@ export default function MainContent() {
                 ></i>
                 <ul className="dropdown-menu">
                   <li>
-                    <a
+                    <button
                       className="dropdown-item"
-                      href="#"
                       onClick={() => handleDelete(item.id)}
                     >
                       Delete
-                    </a>
+                    </button>
                   </li>
                 </ul>
               </div>

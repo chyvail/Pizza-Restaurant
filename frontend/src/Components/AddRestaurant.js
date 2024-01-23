@@ -21,7 +21,7 @@ export default function AddRestaurant() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetch("/restaurants", {
+    fetch("https://pizza-restaurant-jl0u.onrender.com/restaurants", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
