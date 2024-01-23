@@ -2,6 +2,10 @@
 
 This project encompasses a robust backend with defined models, routes, and relationships centered around a Pizza Restaurant domain. The backend, constructed in Flask, provides a comprehensive API to interact with the underlying data.
 
+# Backend API Link on Render
+
+The link is available [here](https://pizza-restaurant-jl0u.onrender.com)
+
 ## Setup
 
 To download the dependencies for the frontend and backend, run:
